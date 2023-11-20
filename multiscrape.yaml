@@ -1,0 +1,111 @@
+# #######################################################################
+# ##################      SHMU    S C R A P E    REST     ###############
+#######################################################################
+- resource: https://www.shmu.sk/sk/?page=765&station_id=7468#!
+  scan_interval: 6000
+  name: "Hladina a teplota Krivánsky potok" # multiscrape_krivan_potok
+  sensor:
+    - unique_id: multiscrape_krivan_potok_hladina
+      name: Hladina Krivánsky potok
+      select: "tbody tr.second td:nth-child(2)" 
+      value_template: "{{ value }}"
+      unit_of_measurement: cm
+
+    - unique_id: multiscrape_krivan_potok_teplota
+      name: Teplota Krivánsky potok
+      select: "tbody tr:nth-child(1) td:nth-child(3)"
+      value_template: "{{ value }}"
+      unit_of_measurement: °C
+
+##############################
+
+- resource: https://www.shmu.sk/sk/?page=765&station_id=7472#! 
+  scan_interval: 6000
+  name: "Hladina a teplota Budinský potok" #multiscrape_budina_potok
+  sensor:
+    - unique_id: multiscrape_budina_potok_hladina
+      name: Hladina Budinský potok
+      select: "tbody tr.second td:nth-child(2)"
+      value_template: "{{ value }}"
+      unit_of_measurement: cm
+    - unique_id: multiscrape_budina_potok_teplota
+      name: Teplota Budinský potok
+      select: "tbody tr:nth-child(1) td:nth-child(3)"
+      value_template: "{{ value }}"
+      unit_of_measurement: °C
+    ######
+    - unique_id: multiscrape_budina_potok_nazov_stanice
+      name: "Názov stanice"
+      select: "tr:-soup-contains('Názov stanice') td:nth-child(2)"
+      value_template: "{{ value }}"
+    #####
+    - unique_id: multiscrape_budina_potok_oblast
+      name: "Oblasť"
+      select: "tr:-soup-contains('Oblasť') td:nth-child(2)"
+      value_template: "{{ value }}"
+    #####
+    - unique_id: multiscrape_budina_potok_region
+      name: "Región"
+      select: "tr:-soup-contains('Región') td:nth-child(2)"
+      value_template: "{{ value }}"
+    #####
+    - unique_id: multiscrape_budina_potok_hranica_1
+      name: "Hranica pre 1. stupeň PA"
+      select: "tr:-soup-contains('Hranica pre 1. stupeň PA') td:nth-child(2)"
+      value_template: "{{ value }}"
+    #####
+    - unique_id: multiscrape_budina_potok_hranica_2
+      name: "Hranica pre 2. stupeň PA"
+      select: "tr:-soup-contains('Hranica pre 2. stupeň PA') td:nth-child(2)"
+    #####
+    - unique_id: multiscrape_budina_potok_hranica_3
+      name: "Hranica pre 3. stupeň PA"
+      select: "tr:-soup-contains('Hranica pre 3. stupeň PA') td:nth-child(2)"
+
+##############################
+
+- resource: https://www.shmu.sk/sk/?page=1&id=hydro_vod_all&station_id=7466#!
+  scan_interval: 6000
+  name: "Hladina a teplota Krivánsky potok nad VN"
+  sensor:
+    - unique_id: multiscrape_krivansky_potok_hladina_nad_vn
+      name: Hladina Krivánsky potok nad VN
+      select: "tbody tr.second td:nth-child(2)"
+      value_template: "{{ value }}"
+      unit_of_measurement: cm
+
+    - unique_id: multiscrape_krivansky_potok_teplota_nad_vn
+      name: Teplota Krivánsky potok nad VN
+      select: "tbody tr:nth-child(1) td:nth-child(3)"
+      value_template: "{{ value }}"
+      unit_of_measurement: °C
+
+    - unique_id: multiscrape_krivansky_potok_nazov_stanice_nad_vn
+      name: "Názov stanice"
+      select: "tr:-soup-contains('Názov stanice') td:nth-child(2)"
+      value_template: "{{ value }}"
+
+    - unique_id: multiscrape_krivansky_potok_oblast_nad_vn
+      name: "Oblasť"
+      select: "tr:-soup-contains('Oblasť') td:nth-child(2)"
+      value_template: "{{ value }}"
+
+    - unique_id: multiscrape_krivansky_potok_region_nad_vn
+      name: "Región"
+      select: "tr:-soup-contains('Región') td:nth-child(2)"
+      value_template: "{{ value }}"
+
+    - unique_id: multiscrape_krivansky_potok_hranica_1_nad_vn
+      name: "Hranica pre 1. stupeň PA"
+      select: "tr:-soup-contains('Hranica pre 1. stupeň PA') td:nth-child(2)"
+      value_template: "{{ value }}"
+
+    - unique_id: multiscrape_krivansky_potok_hranica_2_nad_vn
+      name: "Hranica pre 2. stupeň PA"
+      select: "tr:-soup-contains('Hranica pre 2. stupeň PA') td:nth-child(2)"
+      value_template: "{{ value }}"
+
+    - unique_id: multiscrape_krivansky_potok_hranica_3_nad_vn
+      name: "Hranica pre 3. stupeň PA"
+      select: "tr:-soup-contains('Hranica pre 3. stupeň PA') td:nth-child(2)"
+      value_template: "{{ value }}"
