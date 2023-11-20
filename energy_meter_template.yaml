@@ -1,0 +1,30 @@
+
+####################################################################
+sensor:
+  - name: "Gas Meter Energy (m³)" # energy dashboard
+    unique_id: gas_meter_energy_m3
+    unit_of_measurement: m³
+    state_class: "total_increasing"
+    device_class: "gas"
+    state: "{{ (states('counter.plynove_pocitadlo') | float - 11101765) / 1000 | round(2) }}"
+
+  - name: "Gas Meter Energy (kWh)"
+    unique_id: gas_meter_energy_kwh
+    unit_of_measurement: kWh
+    state_class: "total_increasing"
+    device_class: "gas"
+    state: "{{ (states('counter.plynove_pocitadlo') | float - 11101765) / 1000 * 9.623 | round(2) }}"
+
+  - name: "Gas Meter Energy za m3 (Euro)"
+    unique_id: gas_meter_energy_euro_za_m3
+    unit_of_measurement: "€"
+    state_class: "total_increasing"
+    device_class: "gas"
+    state: "{{ (states('counter.plynove_pocitadlo') | float - 11101765) / 1000 * 0.54 | round(2) }}"
+
+  - name: "Gas Meter Energy za Kwh (Euro)"
+    unique_id: gas_meter_energy_euro_za_kwh
+    unit_of_measurement: "€"
+    state_class: "total_increasing"
+    device_class: "gas"
+    state: "{{ (states('counter.plynove_pocitadlo') | float - 11101765) / 1000 * 9.623 * 0.0505495661320011 | round(2) }}"
